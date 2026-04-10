@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Hisaab-Kitaab | Visual Reports</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+	<div class="grain"></div>
+	<div class="bg-shape shape-a"></div>
+	<div class="bg-shape shape-b"></div>
+	<div class="bg-stripes"></div>
+
+	<header class="site-header panel reveal">
+		<div class="brand-wrap">
+			<p class="kicker">Personal finance dashboard</p>
+			<h1 class="brand">Hisaab-Kitaab</h1>
+		</div>
+		<div class="header-actions">
+			<label class="month-filter">
+				Month
+				<select id="monthFilter"></select>
+			</label>
+			<a class="btn btn-ghost planner-link" href="travel-planner.html">Travel Planning</a>
+		</div>
+	</header>
+
+	<main class="layout">
+		<section class="panel form-panel reveal">
+			<h2>Add Expense</h2>
+			<form id="expenseForm" class="expense-form">
+				<label>
+					Amount
+					<input id="amount" type="number" min="0.01" step="0.01" placeholder="e.g. 42.50" required />
+				</label>
+				<label>
+					Category
+					<select id="category" required>
+						<option value="">Choose</option>
+						<option>Food</option>
+						<option>Clothes</option>
+						<option>Stationery</option>
+						<option>Travel</option>
+					</select>
+				</label>
+				<label>
+					Date
+					<input id="date" type="date" required />
+				</label>
+				<label>
+					Note
+					<input id="note" type="text" maxlength="80" placeholder="Groceries, commute, bill..." />
+				</label>
+				<button class="btn btn-primary" type="submit">Add Transaction</button>
+			</form>
+		</section>
+
+		<section class="panel summary-panel reveal">
+			<h2>Summary</h2>
+			<div class="summary-grid" id="summaryGrid">
+				<article class="stat-card">
+					<p>Total Spend</p>
+					<strong id="totalSpend">₹0.00</strong>
+				</article>
+				<article class="stat-card">
+					<p>Average / Day</p>
+					<strong id="avgSpend">₹0.00</strong>
+				</article>
+				<article class="stat-card">
+					<p>Top Category</p>
+					<strong id="topCategory">-</strong>
+				</article>
+				<article class="stat-card">
+					<p>Transactions</p>
+					<strong id="txCount">0</strong>
+				</article>
+			</div>
+		</section>
+
+		<section class="panel charts-panel reveal">
+			<div class="section-head">
+				<h2>Visual Reports</h2>
+				<p id="reportCaption">Category distribution and daily trend.</p>
+			</div>
+			<div class="chart-grid">
+				<article class="chart-card">
+					<h3>Spending by Category</h3>
+					<canvas id="categoryChart" width="640" height="340" aria-label="Bar chart for category spending"></canvas>
+				</article>
+				<article class="chart-card">
+					<h3>Daily Spending Trend</h3>
+					<canvas id="trendChart" width="640" height="340" aria-label="Line chart for daily spending"></canvas>
+				</article>
+			</div>
+		</section>
+
+		<section class="panel list-panel reveal">
+			<div class="section-head">
+				<h2>Transactions</h2>
+				<button id="clearAll" class="btn btn-ghost" type="button">Clear All</button>
+			</div>
+			<ul id="expenseList" class="expense-list"></ul>
+		</section>
+	</main>
+
+	<div class="toast" id="toast">Saved</div>
+	<script src="app.js"></script>
+</body>
+</html>

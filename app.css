@@ -1,0 +1,695 @@
+:root {
+	--bg: #0e1220;
+	--paper: #1d263a;
+	--paper-soft: #2a3550;
+	--ink: #f7faff;
+	--muted: #b7c4d9;
+	--line: #d3deef;
+	--accent: #4f8cff;
+	--accent-2: #9bb6de;
+	--accent-3: #ffffff;
+	--radius-lg: 26px;
+	--radius-md: 18px;
+	--shadow: 0 8px 0 #080b14;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: "Baloo 2", "Trebuchet MS", "Segoe UI", sans-serif;
+	background: radial-gradient(circle at 8% 11%, #344769 0%, transparent 26%),
+			radial-gradient(circle at 88% 12%, #27415d 0%, transparent 30%),
+			radial-gradient(circle at 82% 82%, #354055 0%, transparent 28%),
+			linear-gradient(165deg, #0f1525 0%, #111a2f 54%, #0d1322 100%);
+	color: var(--ink);
+	padding: 1.1rem;
+	min-height: 100vh;
+	overflow-x: hidden;
+	position: relative;
+}
+
+.grain,
+.bg-shape,
+.bg-stripes {
+	position: fixed;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.grain {
+	inset: 0;
+	opacity: 0.14;
+	background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+	background-size: 7px 7px;
+}
+
+.bg-shape {
+	border: 4px solid var(--line);
+	border-radius: 42%;
+	box-shadow: var(--shadow);
+	background: #2c3f62;
+	filter: saturate(1.15);
+	animation: wobble 5s ease-in-out infinite;
+}
+
+.shape-a {
+	width: 180px;
+	height: 180px;
+	left: 2%;
+	top: 8%;
+	border-radius: 41% 59% 51% 49% / 57% 46% 54% 43%;
+}
+
+.shape-b {
+	width: 220px;
+	height: 220px;
+	right: 3%;
+	bottom: 8%;
+	border-radius: 58% 42% 37% 63% / 40% 63% 37% 60%;
+	background: #3a4a63;
+	animation-duration: 6.5s;
+}
+
+.bg-stripes {
+	width: 360px;
+	height: 220px;
+	right: -14%;
+	top: 32%;
+	border: 4px solid var(--line);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow);
+	background: repeating-linear-gradient(
+		-36deg,
+		#25344f 0,
+		#25344f 16px,
+		#4a5f84 16px,
+		#4a5f84 32px
+	);
+	transform: rotate(-11deg);
+}
+
+.layout,
+.site-header {
+	max-width: 1100px;
+	margin: 0 auto 1rem;
+}
+
+.panel {
+	border: 4px solid var(--line);
+	border-radius: var(--radius-lg);
+	background: var(--paper);
+	box-shadow: var(--shadow);
+	padding: 1rem;
+}
+
+.site-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+	gap: 1rem;
+}
+
+.brand {
+	font-family: "Bebas Neue", Impact, sans-serif;
+	letter-spacing: 1px;
+	font-size: clamp(2.2rem, 6vw, 4rem);
+	line-height: 0.9;
+	text-shadow: 2px 2px 0 #080b14;
+}
+
+.kicker {
+	color: var(--muted);
+	font-weight: 700;
+	font-size: 0.9rem;
+	text-transform: uppercase;
+	margin-bottom: 0.3rem;
+}
+
+.month-filter {
+	font-size: 0.9rem;
+	font-weight: 700;
+	display: grid;
+	gap: 0.35rem;
+}
+
+.header-actions {
+	display: flex;
+	align-items: end;
+	gap: 0.65rem;
+	flex-wrap: wrap;
+}
+
+.planner-link {
+	text-decoration: none;
+	line-height: 1;
+	padding-top: 0.62rem;
+	padding-bottom: 0.62rem;
+}
+
+.month-filter select {
+	min-width: 180px;
+	border: 3px solid var(--line);
+	border-radius: 10px;
+	background: var(--paper-soft);
+	box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.12);
+	color: var(--ink);
+	padding: 0.45rem 0.5rem;
+	font-weight: 700;
+	font-family: inherit;
+}
+
+.layout {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: 1.05fr 1fr;
+	grid-template-areas:
+		"form summary"
+		"charts charts"
+		"list list";
+}
+
+.form-panel {
+	grid-area: form;
+}
+
+.summary-panel {
+	grid-area: summary;
+}
+
+.charts-panel {
+	grid-area: charts;
+}
+
+.list-panel {
+	grid-area: list;
+}
+
+h2 {
+	font-family: "Bebas Neue", Impact, sans-serif;
+	font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+	letter-spacing: 0.5px;
+	margin-bottom: 0.7rem;
+}
+
+.expense-form {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.7rem;
+}
+
+.expense-form label {
+	font-size: 0.82rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.4px;
+	display: grid;
+	gap: 0.3rem;
+}
+
+.expense-form input,
+.expense-form select {
+	border: 3px solid var(--line);
+	border-radius: 10px;
+	background: var(--paper-soft);
+	box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.12);
+	color: var(--ink);
+	padding: 0.55rem;
+	font-family: inherit;
+	font-weight: 600;
+}
+
+.expense-form button {
+	grid-column: span 2;
+	margin-top: 0.2rem;
+}
+
+.btn {
+	border: 3px solid var(--line);
+	border-radius: 12px;
+	padding: 0.55rem 0.9rem;
+	font-weight: 700;
+	font-family: inherit;
+	cursor: pointer;
+	box-shadow: 0 5px 0 var(--line);
+	transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+	color: var(--ink);
+	background: var(--paper-soft);
+}
+
+.btn:active {
+	transform: translateY(3px);
+	box-shadow: 0 2px 0 var(--line);
+}
+
+.btn:hover {
+	filter: brightness(1.04);
+}
+
+.btn-primary {
+	background: var(--accent);
+	color: #ffffff;
+}
+
+.btn-ghost {
+	background: #334364;
+	color: var(--ink);
+}
+
+.summary-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.7rem;
+}
+
+.stat-card {
+	border: 3px solid var(--line);
+	border-radius: var(--radius-md);
+	padding: 0.75rem;
+	background: #2d3a56;
+	box-shadow: 0 5px 0 var(--line);
+	display: grid;
+	gap: 0.4rem;
+}
+
+.stat-card:nth-child(2) {
+	background: #2f455d;
+}
+
+.stat-card:nth-child(3) {
+	background: #3a4a67;
+}
+
+.stat-card:nth-child(4) {
+	background: #2b3f59;
+}
+
+.stat-card p {
+	color: var(--muted);
+	font-size: 0.88rem;
+	font-weight: 700;
+}
+
+.stat-card strong {
+	font-family: "Bebas Neue", Impact, sans-serif;
+	font-size: 2rem;
+	line-height: 0.85;
+	letter-spacing: 0.5px;
+}
+
+.section-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: end;
+	gap: 0.8rem;
+	margin-bottom: 0.6rem;
+}
+
+#reportCaption {
+	font-size: 0.86rem;
+	color: var(--muted);
+	font-weight: 700;
+	text-align: right;
+}
+
+.chart-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.8rem;
+}
+
+.chart-card {
+	border: 3px solid var(--line);
+	border-radius: var(--radius-md);
+	background: var(--paper);
+	padding: 0.8rem;
+	box-shadow: 0 5px 0 var(--line);
+	display: grid;
+	gap: 0.6rem;
+}
+
+.chart-card h3 {
+	font-family: "Bebas Neue", Impact, sans-serif;
+	font-size: 1.45rem;
+	letter-spacing: 0.5px;
+	font-weight: 400;
+}
+
+canvas {
+	width: 100%;
+	height: auto;
+	border: 3px solid var(--line);
+	border-radius: 12px;
+	background: #11172b;
+	box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.12);
+	display: block;
+}
+
+.expense-list {
+	list-style: none;
+	display: grid;
+	gap: 0.6rem;
+}
+
+.expense-item {
+	display: grid;
+	grid-template-columns: 1fr auto auto;
+	gap: 0.7rem;
+	align-items: center;
+	border: 3px solid var(--line);
+	border-radius: 12px;
+	background: var(--paper);
+	box-shadow: 0 5px 0 var(--line);
+	padding: 0.7rem;
+}
+
+.expense-main {
+	display: grid;
+	gap: 0.2rem;
+}
+
+.expense-main p {
+	font-weight: 700;
+	font-size: 0.98rem;
+}
+
+.expense-meta {
+	font-size: 0.82rem;
+	color: var(--muted);
+	font-weight: 600;
+}
+
+.expense-amount {
+	font-family: "Bebas Neue", Impact, sans-serif;
+	font-size: 1.8rem;
+	line-height: 0.85;
+	letter-spacing: 0.4px;
+}
+
+.delete-btn {
+	border: 3px solid var(--line);
+	border-radius: 10px;
+	background: #4a5974;
+	color: var(--ink);
+	font-family: inherit;
+	font-weight: 700;
+	padding: 0.35rem 0.55rem;
+	cursor: pointer;
+	box-shadow: 0 4px 0 var(--line);
+}
+
+.empty-state {
+	padding: 0.85rem;
+	border: 3px dashed var(--line);
+	border-radius: 12px;
+	background: #202943;
+	color: var(--muted);
+	font-weight: 700;
+	text-align: center;
+}
+
+.toast {
+	position: fixed;
+	right: 1rem;
+	bottom: 1rem;
+	background: var(--accent);
+	color: #ffffff;
+	border: 3px solid var(--line);
+	border-radius: 12px;
+	box-shadow: 0 5px 0 var(--line);
+	font-weight: 700;
+	padding: 0.55rem 0.8rem;
+	opacity: 0;
+	transform: translateY(14px);
+	transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+@keyframes wobble {
+	0%,
+	100% {
+		transform: rotate(0deg) translateY(0);
+	}
+	50% {
+		transform: rotate(4deg) translateY(-8px);
+	}
+}
+
+.toast.show {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.reveal {
+	opacity: 0;
+	transform: translateY(14px);
+	transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.reveal.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+	.layout {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"form"
+			"summary"
+			"charts"
+			"list";
+	}
+
+	.chart-grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 640px) {
+	.site-header,
+	.section-head {
+		flex-wrap: wrap;
+	}
+
+	.header-actions {
+		width: 100%;
+		justify-content: space-between;
+	}
+
+	.expense-form {
+		grid-template-columns: 1fr;
+	}
+
+	.expense-form button {
+		grid-column: span 1;
+	}
+
+	.summary-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.shape-a {
+		width: 110px;
+		height: 110px;
+	}
+
+	.shape-b {
+		width: 120px;
+		height: 120px;
+	}
+
+	.bg-stripes {
+		width: 200px;
+		height: 130px;
+		right: -22%;
+	}
+
+	.expense-item {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.reveal,
+	.toast {
+		transition: none !important;
+	}
+}
+
+.travel-page .layout,
+.travel-page .site-header {
+	max-width: 1100px;
+	margin: 0 auto 1rem;
+}
+
+.planner-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1rem;
+	margin-bottom: 1rem;
+}
+
+.travel-expenses {
+	margin-top: 1rem;
+	display: grid;
+	gap: 0.8rem;
+}
+
+.travel-expense-form {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1.1fr auto;
+	gap: 0.6rem;
+	align-items: end;
+}
+
+.travel-expense-form label {
+	display: grid;
+	gap: 0.3rem;
+	font-weight: 700;
+	font-size: 0.82rem;
+	text-transform: uppercase;
+	letter-spacing: 0.4px;
+}
+
+.travel-expense-form input,
+.travel-expense-form select {
+	width: 100%;
+	border: 3px solid var(--line);
+	border-radius: 10px;
+	background: var(--paper-soft);
+	color: var(--ink);
+	padding: 0.55rem;
+	font-family: inherit;
+	font-weight: 600;
+	box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.12);
+}
+
+.travel-expense-summary {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 0.7rem;
+	align-items: center;
+	border: 3px solid var(--line);
+	border-radius: 12px;
+	background: #2c3b59;
+	padding: 0.7rem;
+	box-shadow: 0 5px 0 var(--line);
+}
+
+.travel-expense-summary p {
+	font-weight: 700;
+	color: var(--muted);
+}
+
+.travel-expense-total {
+	font-family: "Bebas Neue", Impact, sans-serif;
+	font-size: 2rem;
+	line-height: 0.9;
+	letter-spacing: 0.5px;
+}
+
+.travel-expense-list {
+	list-style: none;
+	display: grid;
+	gap: 0.6rem;
+}
+
+.travel-expense-item {
+	display: grid;
+	grid-template-columns: 1fr auto auto;
+	gap: 0.7rem;
+	align-items: center;
+	border: 3px solid var(--line);
+	border-radius: 12px;
+	background: var(--paper);
+	box-shadow: 0 5px 0 var(--line);
+	padding: 0.7rem;
+}
+
+.travel-expense-meta {
+	font-size: 0.82rem;
+	color: var(--muted);
+	font-weight: 600;
+}
+
+.travel-expense-amount {
+	font-family: "Bebas Neue", Impact, sans-serif;
+	font-size: 1.75rem;
+	line-height: 0.9;
+}
+
+.planner-card {
+	border: 3px solid var(--line);
+	border-radius: var(--radius-md);
+	background: var(--paper);
+	box-shadow: 0 5px 0 var(--line);
+	padding: 0.85rem;
+	display: grid;
+	gap: 0.6rem;
+}
+
+.planner-card h3 {
+	font-family: "Bebas Neue", Impact, sans-serif;
+	font-size: 1.5rem;
+	line-height: 0.9;
+	letter-spacing: 0.5px;
+}
+
+.planner-card textarea,
+.planner-card input {
+	width: 100%;
+	border: 3px solid var(--line);
+	border-radius: 10px;
+	background: var(--paper-soft);
+	color: var(--ink);
+	padding: 0.55rem;
+	font-family: inherit;
+	font-weight: 600;
+	box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.12);
+	resize: vertical;
+}
+
+.planner-actions {
+	display: flex;
+	gap: 0.6rem;
+	justify-content: flex-end;
+	flex-wrap: wrap;
+}
+
+.planner-note {
+	color: var(--muted);
+	font-weight: 700;
+	font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+	.planner-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.travel-expense-form {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.travel-expense-form .btn {
+		grid-column: span 2;
+	}
+}
+
+@media (max-width: 640px) {
+	.travel-expense-form {
+		grid-template-columns: 1fr;
+	}
+
+	.travel-expense-form .btn {
+		grid-column: span 1;
+	}
+
+	.travel-expense-item,
+	.travel-expense-summary {
+		grid-template-columns: 1fr;
+	}
+}
